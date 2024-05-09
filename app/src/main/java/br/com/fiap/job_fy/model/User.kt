@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.util.Date
 
@@ -44,10 +45,19 @@ class User (
             {
                 errorDataNascimento = true
             } else {
-                errorDataNascimento = false
+                val period = Period.between(LocalDate.parse(dataNascimento,
+                                                            DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                                          , LocalDate.now())
+                if ( period.years >= 16 )
+                {
+                    errorDataNascimento = false
+                } else {
+                    errorDataNascimento = true
+                }
             }
 
             if ( !errorDataNascimento && !errorNome && !errorSobrenome ) {
+
                 vld = true
             } else {
                 vld = false
