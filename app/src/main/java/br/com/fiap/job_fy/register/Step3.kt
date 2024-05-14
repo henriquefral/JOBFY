@@ -90,7 +90,7 @@ fun Step3 (usuario: Usuario) {
 
                 Row() {
                     Button(onClick = { if ( formacao.vldFormacao() ) {
-                                            listaFormacao.add(formacao)
+                                            listaFormacao.add(formacao.copy())
                                             formacao.limpa()
                                             instituicao = ""
                                             graduacao = ""
@@ -128,11 +128,8 @@ fun Step3 (usuario: Usuario) {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(Color.Red)
                     ) {
                         Text(text = it.instituicao,fontSize = 17.sp
-                            ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
-                        Text(text = "kkkkkkkkkkkkkkkkkkkkkkkk",fontSize = 17.sp
                             ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
                     }
                 }

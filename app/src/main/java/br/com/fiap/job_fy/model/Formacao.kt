@@ -4,7 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
-class Formacao (
+data class Formacao (
     var instituicao : String = "",
     var graduacao   : String = "",
     var descricao   : String = ""
