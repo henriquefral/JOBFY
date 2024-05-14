@@ -3,6 +3,7 @@ package br.com.fiap.job_fy.register
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,9 +18,11 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
@@ -57,10 +60,8 @@ fun Step3 (usuario: Usuario) {
     var formacao = Formacao()
 
     var listaFormacao = remember {
-        mutableListOf<Formacao>()
+        mutableStateListOf<Formacao>()
     }
-
-
 
     Column {
         OutlinedCard( colors = CardDefaults.cardColors()
@@ -84,7 +85,7 @@ fun Step3 (usuario: Usuario) {
                          ,valueOnChange = { graduacao = it; formacao.graduacao = it } )
 
                 InputText(text = "Descreva"
-                         ,error = formacao.errorInstituicao || usuario.errorFormacao
+                         ,error = formacao.errorDescricao || usuario.errorFormacao
                          ,value = descricao
                          ,valueOnChange = { descricao = it; formacao.descricao = it } )
 
@@ -125,12 +126,34 @@ fun Step3 (usuario: Usuario) {
                     .padding(top = 15.dp)
             ) {
                 items(listaFormacao) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
+                    OutlinedCard( colors = CardDefaults.cardColors()
+                        , modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 15.dp)
                     ) {
-                        Text(text = it.instituicao,fontSize = 17.sp
-                            ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(start = 10.dp, top = 10.dp, bottom = 17.dp)
+                        ) {
+                            Text(text = it.instituicao,fontSize = 19.sp
+                                ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
+                            Spacer(modifier = Modifier.height(7.dp))
+                            Text(text = it.graduacao,fontSize = 17.sp
+                                ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
+                            Spacer(modifier = Modifier.height(9.dp))
+                            Text(text = it.descricao,fontSize = 16.sp
+                                ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
+
+                            Button(onClick = {
+                                listaFormacao.remove(it)
+                            },modifier = Modifier.padding(top = 10.dp, end = 12.dp)
+                                                 .align(Alignment.End)) {
+
+                                Text(text = "Apagar",fontSize = 17.sp
+                                    ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
+                            }
+                        }
                     }
                 }
             }
