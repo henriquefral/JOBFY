@@ -28,8 +28,8 @@ import br.com.fiap.job_fy.model.Usuario
 @Composable
 fun RegisterScreen(navController: NavController) {
 
-    var usuario by remember { mutableStateOf(Usuario()) }
-    var page by remember { mutableIntStateOf(2) }
+    val usuario by remember { mutableStateOf(Usuario()) }
+    var page by remember { mutableIntStateOf(5) }
 
     Column (modifier = Modifier
         .padding(top = 15.dp, start = 10.dp, end = 10.dp)
@@ -41,45 +41,63 @@ fun RegisterScreen(navController: NavController) {
 
         Text(text = "Informe seus dados!", fontSize = 40.sp)
 
-        if ( page == 0 ) {
-            Step1(usuario = usuario)
-        } else if ( page == 1 ) {
-            Step2(usuario = usuario)
-        } else if ( page == 2 ) {
-            Step3(usuario = usuario)
+        when (page) {
+            0 -> {
+                Step1(usuario = usuario)
+            }
+            1 -> {
+                Step2(usuario = usuario)
+            }
+            2 -> {
+                Step3(usuario = usuario)
+            }
+            3 -> {
+                Step4(usuario = usuario)
+            }
+            4 -> {
+                Step5(usuario = usuario)
+            }
+            5 -> {
+                Step6(usuario = usuario)
+            }
+            6 -> {
+                usuario.cadastro()
+            }
         }
-
-        Row (modifier = Modifier
-            .padding(start = 15.dp, end = 15.dp, top = 10.dp)
-            .fillMaxWidth(),
-             horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-
-            Image(
-                painter = painterResource(id = R.drawable.backicon),
-                contentDescription = "back",
+        if ( page < 6 ) {
+            Row(
                 modifier = Modifier
-                    .size(120.dp, 120.dp)
-                    .padding(bottom = 10.dp)
-                    .clickable {
-                        if (page > 0) {
-                            page--
-                        }
-                    }
-            )
+                    .padding(start = 15.dp, end = 15.dp, top = 10.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
 
-            Image(
-                painter = painterResource(id = R.drawable.nexticon),
-                contentDescription = "wallet",
-                modifier = Modifier
-                    .size(120.dp, 120.dp)
-                    .padding(bottom = 10.dp)
-                    .clickable {
-                        if (usuario.VldPage(page)) {
-                            page++
+                Image(
+                    painter = painterResource(id = R.drawable.backicon),
+                    contentDescription = "back",
+                    modifier = Modifier
+                        .size(120.dp, 120.dp)
+                        .padding(bottom = 10.dp)
+                        .clickable {
+                            if (page > 0) {
+                                page--
+                            }
                         }
-                    }
-            )
+                )
+
+                Image(
+                    painter = painterResource(id = R.drawable.nexticon),
+                    contentDescription = "wallet",
+                    modifier = Modifier
+                        .size(120.dp, 120.dp)
+                        .padding(bottom = 10.dp)
+                        .clickable {
+                            if (usuario.vldPage(page)) {
+                                page++
+                            }
+                        }
+                )
+            }
         }
     }
 }

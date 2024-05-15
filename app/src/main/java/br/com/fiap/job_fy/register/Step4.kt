@@ -28,17 +28,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.job_fy.R
 import br.com.fiap.job_fy.components.InputText
-import br.com.fiap.job_fy.model.Formacao
+import br.com.fiap.job_fy.model.Habilidade
 import br.com.fiap.job_fy.model.Usuario
 
 @Composable
-fun Step3 (usuario: Usuario) {
+fun Step4 (usuario: Usuario) {
 
-    var instituicao by remember {
-        mutableStateOf("")
-    }
-
-    var graduacao by remember {
+    var nome by remember {
         mutableStateOf("")
     }
 
@@ -46,7 +42,7 @@ fun Step3 (usuario: Usuario) {
         mutableStateOf("")
     }
 
-    var mostraFormacoes by remember {
+    var mostraHabiliadades by remember {
         mutableStateOf(false)
     }
 
@@ -54,68 +50,62 @@ fun Step3 (usuario: Usuario) {
         mutableStateOf("Ver")
     }
 
-    val formacao = Formacao()
+    val habilidade = Habilidade()
 
-    val listaFormacao = remember {
-        mutableStateListOf<Formacao>()
+    val listaHabilidade = remember {
+        mutableStateListOf<Habilidade>()
     }
 
     LaunchedEffect(Unit) {
-        usuario.formacao.forEach {
-            listaFormacao.add(it)
+        usuario.habilidade.forEach {
+            listaHabilidade.add(it)
         }
     }
 
     Column {
         OutlinedCard( colors = CardDefaults.cardColors()
-                    , modifier = Modifier
+            , modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 15.dp)
         )
         {
             Column (modifier = Modifier.padding(start = 10.dp, top = 10.dp, bottom = 17.dp)) {
 
-                Text(text = "Estudos!", fontSize = 35.sp)
+                Text(text = "Habilidades!", fontSize = 35.sp)
 
-                InputText(text = "Instituição"
-                         ,error = formacao.errorInstituicao || usuario.errorFormacao
-                         ,value = instituicao
-                         ,valueOnChange = { instituicao = it; formacao.instituicao = it } )
+                InputText(text = "Digite uma das várias"
+                    ,error = habilidade.errorNome || usuario.errorHabilidade
+                    ,value = nome
+                    ,valueOnChange = { nome = it; habilidade.nome = it } )
 
-                InputText(text = "Graduação"
-                         ,error = formacao.errorGraduacao || usuario.errorFormacao
-                         ,value = graduacao
-                         ,valueOnChange = { graduacao = it; formacao.graduacao = it } )
-
-                InputText(text = "Descreva"
-                         ,error = formacao.errorDescricao || usuario.errorFormacao
-                         ,value = descricao
-                         ,valueOnChange = { descricao = it; formacao.descricao = it } )
+                InputText(text = "Descreva sobre"
+                    ,error = habilidade.errorDescricao || usuario.errorHabilidade
+                    ,value = descricao
+                    ,valueOnChange = { descricao = it; habilidade.descricao = it } )
 
                 Row {
-                    Button(onClick = { if ( formacao.vldFormacao() ) {
-                                            listaFormacao.add(formacao.copy())
-                                            usuario.formacao = listaFormacao
-                                            usuario.errorFormacao = false
-                                            formacao.limpa()
-                                            instituicao = ""
-                                            graduacao = ""
-                                            descricao = ""
-                                       }
-                                     }
-                          ,modifier = Modifier.padding(top = 15.dp)) {
-                        Text(text = "Salvar estudo!", fontSize = 17.sp
+                    Button(onClick = { if ( habilidade.vldHabilidade() ) {
+                        listaHabilidade.add(habilidade.copy())
+                        usuario.habilidade = listaHabilidade
+                        usuario.errorHabilidade = false
+                        habilidade.limpa()
+                        nome = ""
+                        descricao = ""
+                    }
+                    }
+                        ,modifier = Modifier.padding(top = 15.dp)) {
+                        Text(text = "Salvar habilidade!", fontSize = 17.sp
                             ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
                     }
 
-                    Button(onClick = { if ( mostraFormacoes )
-                                       {
-                                            mostraFormacoes = false; obsBtn = "Ver"
-                                       } else {
-                                            mostraFormacoes = true; obsBtn = "Esconder"
-                                       }
-                                     }
-                          ,modifier = Modifier.padding(top = 15.dp, start = 60.dp)) {
+                    Button(onClick = { if ( mostraHabiliadades )
+                    {
+                        mostraHabiliadades = false; obsBtn = "Ver"
+                    } else {
+                        mostraHabiliadades = true; obsBtn = "Esconder"
+                    }
+                    }
+                        ,modifier = Modifier.padding(top = 15.dp, start = 42.dp)) {
 
                         Text(text = obsBtn,fontSize = 17.sp
                             ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
@@ -123,14 +113,14 @@ fun Step3 (usuario: Usuario) {
                 }
             }
         }
-        if ( mostraFormacoes && listaFormacao.size > 0 ) {
+        if ( mostraHabiliadades && listaHabilidade.size > 0 ) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(210.dp)
+                    .height(180.dp)
                     .padding(top = 15.dp)
             ) {
-                items(listaFormacao) {
+                items(listaHabilidade) {
                     OutlinedCard( colors = CardDefaults.cardColors()
                         , modifier = Modifier
                             .fillMaxWidth()
@@ -141,20 +131,17 @@ fun Step3 (usuario: Usuario) {
                                 .fillMaxSize()
                                 .padding(start = 10.dp, top = 10.dp, bottom = 17.dp)
                         ) {
-                            Text(text = it.instituicao,fontSize = 19.sp
-                                ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
-                            Spacer(modifier = Modifier.height(7.dp))
-                            Text(text = it.graduacao,fontSize = 17.sp
+                            Text(text = it.nome,fontSize = 19.sp
                                 ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
                             Spacer(modifier = Modifier.height(9.dp))
                             Text(text = it.descricao,fontSize = 16.sp
                                 ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))
 
                             Button(onClick = {
-                                listaFormacao.remove(it)
-                                usuario.formacao = listaFormacao
+                                listaHabilidade.remove(it)
+                                usuario.habilidade = listaHabilidade
                             },modifier = Modifier.padding(top = 10.dp, end = 12.dp)
-                                                 .align(Alignment.End)) {
+                                .align(Alignment.End)) {
 
                                 Text(text = "Apagar",fontSize = 17.sp
                                     ,fontFamily = FontFamily(Font(R.font.marcellussc_regular)))

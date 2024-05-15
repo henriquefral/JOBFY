@@ -16,9 +16,9 @@ fun InputText (value : String, error : Boolean = false, textModifier: Modifier =
                , modifierTextField: Modifier = Modifier
                , valueOnChange: (String) -> Unit, text: String
                , keyboardType : KeyboardType = KeyboardType.Text) {
-
-    Text(text = text, fontSize = 30.sp
-        , modifier = textModifier.padding(top = 15.dp))
+    if ( text.isNotEmpty() ) {
+        Text(text = text, fontSize = 30.sp, modifier = textModifier.padding(top = 15.dp))
+    }
     TextField(value = value, onValueChange = valueOnChange
         , isError = error, modifier = modifierTextField
         , keyboardOptions = KeyboardOptions(keyboardType = keyboardType)

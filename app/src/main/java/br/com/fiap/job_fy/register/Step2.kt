@@ -21,24 +21,24 @@ import br.com.fiap.job_fy.model.Usuario
 fun Step2 (usuario: Usuario) {
 
     var cargo by remember {
-        mutableStateOf("")
+        mutableStateOf(usuario.cargo)
     }
 
     var profissao by remember {
-        mutableStateOf("")
+        mutableStateOf(usuario.profissao)
     }
 
     var setor by remember {
-        mutableStateOf("")
+        mutableStateOf(usuario.setor)
     }
 
     var anos by remember {
-        mutableStateOf("0")
+        mutableStateOf(usuario.anos.toString())
     }
 
-    var obsDados = if (usuario.situacao == 1) "desejados" else "atuais"
+    val obsDados = if (usuario.situacao == 1) "desejados" else "atuais"
 
-    var obsAnos = if (usuario.situacao == 1) "experiência" else "duração"
+    val obsAnos = if (usuario.situacao == 1) "experiência" else "duração"
 
     Column {
         OutlinedCard( colors = CardDefaults.cardColors()
