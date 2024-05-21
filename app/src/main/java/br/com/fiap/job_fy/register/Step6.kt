@@ -21,15 +21,15 @@ import br.com.fiap.job_fy.model.Usuario
 fun Step6 (usuario: Usuario) {
 
     var email by remember {
-        mutableStateOf(usuario.email)
+        mutableStateOf(usuario.loginId)
     }
 
     var senha by remember {
-        mutableStateOf(usuario.senha)
+        mutableStateOf(usuario.loginPass)
     }
 
     var senhaConfirmada by remember {
-        mutableStateOf(usuario.senha)
+        mutableStateOf(usuario.loginPass)
     }
 
     Column {
@@ -44,12 +44,12 @@ fun Step6 (usuario: Usuario) {
                 Text(text = "Login", fontSize = 35.sp)
 
                 InputText(text = "E-mail"
-                    ,error = usuario.errorEmail
+                    ,error = usuario.errorLoginId
                     ,value = email
-                    ,valueOnChange = { email = it; usuario.email = it } )
+                    ,valueOnChange = { email = it; usuario.loginId = it } )
 
                 InputText(text = "Senha"
-                    ,error = usuario.errorSenha
+                    ,error = usuario.errorLoginPass
                     ,value = senha
                     ,valueOnChange = { senha = it } )
 
@@ -58,7 +58,7 @@ fun Step6 (usuario: Usuario) {
                     ,error = senha != senhaConfirmada
                     ,value = senhaConfirmada
                     ,valueOnChange = { senhaConfirmada = it
-                    if ( senhaConfirmada == senha ) { usuario.senha = senhaConfirmada; }
+                    if ( senhaConfirmada == senha ) { usuario.loginPass = senhaConfirmada; }
                     } )
 
             }

@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,7 +30,9 @@ import br.com.fiap.job_fy.model.Usuario
 fun RegisterScreen(navController: NavController) {
 
     val usuario by remember { mutableStateOf(Usuario()) }
-    var page by remember { mutableIntStateOf(5) }
+    var page by remember { mutableIntStateOf(0) }
+
+    val context = LocalContext.current
 
     Column (modifier = Modifier
         .padding(top = 15.dp, start = 10.dp, end = 10.dp)
@@ -61,7 +64,12 @@ fun RegisterScreen(navController: NavController) {
                 Step6(usuario = usuario)
             }
             6 -> {
-                usuario.cadastro()
+                usuario.cadastro(context, navController)
+                page++
+                Text(text="Cadastrando!", fontSize = 50.sp)
+            }
+            7 -> {
+                Text(text="Cadastrando!", fontSize = 50.sp)
             }
         }
         if ( page < 6 ) {
@@ -81,6 +89,8 @@ fun RegisterScreen(navController: NavController) {
                         .clickable {
                             if (page > 0) {
                                 page--
+                            } else {
+                                navController.navigate("login")
                             }
                         }
                 )

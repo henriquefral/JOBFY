@@ -11,6 +11,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.job_fy.login_.LoginScreen
+import br.com.fiap.job_fy.menu.MenuScreen
+import br.com.fiap.job_fy.model.Usuario
 import br.com.fiap.job_fy.register.RegisterScreen
 import br.com.fiap.job_fy.ui.theme.JOB_FYTheme
 
@@ -27,10 +29,21 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "register"
+                        startDestination = "login"
                     ) {
                         composable(route = "login")    { LoginScreen(navController) }
                         composable(route = "register") { RegisterScreen(navController) }
+                        composable(route = "menu")     {
+                            var id = navController.previousBackStackEntry
+                                        ?.savedStateHandle?.get<Int>("id")
+
+                            var nome = navController.previousBackStackEntry
+                                        ?.savedStateHandle?.get<String>("nome")
+
+                            var usuario = Usuario(id = id!!, nome = nome!!)
+
+                            MenuScreen(navController, usuario)
+                        }
                     }
                 }
             }

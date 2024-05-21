@@ -6,15 +6,23 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface UsuarioService {
 
-    @POST("login")
-    fun loginUsuario(@Body body: Usuario): Call<ResponseBody>
+    @GET("login")
+    fun loginUsuario(@Query("id") id: String, @Query("pass") pass: String): Call<Usuario>
 
+    @GET("usuarios")
+    fun getUsuarios(@Query("idUser") id: String): Call<List<Usuario>>
 
     @POST("cadastro")
     fun cadastroUsuario(@Body body: Usuario): Call<ResponseBody>
 
+    @POST("like")
+    fun like(@Query("id") id: Int, @Body body: Int): Call<ResponseBody>
+
+    @POST("dislike")
+    fun dislike(@Query("id") id: Int, @Body body: Int): Call<ResponseBody>
 
 }

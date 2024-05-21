@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "983397108064",
+    "project_id": "jobfy-c9d03",
+    "storage_bucket": "jobfy-c9d03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983397108064:android:92281e32940f0e6134f605",
+        "android_client_info": {
+          "package_name": "br.com.fiap.job_fy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAPj61iTg4N05Ctrx7Uag1k1oVaXrMAc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
