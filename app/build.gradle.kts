@@ -69,6 +69,11 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.sendbird.android.sdk)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.analytics)
+    implementation(libs.sdk.sendbird.android.sdk)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,7 +81,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
-    implementation("com.google.firebase:firebase-analytics")
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
+
 }

@@ -149,7 +149,7 @@ fun MenuScreen (navController : NavController, usuario: Usuario) {
                     .padding(bottom = 10.dp)
                     .clickable {
                         countUsuario.intValue++
-                        usuarios[countUsuario.intValue].like(usuario.id)
+                        usuarios[countUsuario.intValue].like(usuario.id, context)
                     }
             )
 
@@ -161,7 +161,7 @@ fun MenuScreen (navController : NavController, usuario: Usuario) {
                     .padding(bottom = 10.dp)
                     .clickable {
                         countUsuario.intValue++
-                        usuarios[countUsuario.intValue].dislike(usuario.id)
+                        usuarios[countUsuario.intValue].dislike(usuario.id, context)
                     }
             )
         }
