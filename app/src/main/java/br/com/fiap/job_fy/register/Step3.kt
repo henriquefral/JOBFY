@@ -126,7 +126,7 @@ fun Step3 (usuario: Usuario) {
         if ( mostraFormacoes && listaFormacao.size > 0 ) {
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     .height(210.dp)
                     .padding(top = 15.dp)
             ) {

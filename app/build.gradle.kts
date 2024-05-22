@@ -4,6 +4,7 @@ plugins {
 
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
+
 }
 
 android {
@@ -54,6 +55,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -69,11 +71,11 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-    implementation(libs.sendbird.android.sdk)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.analytics)
-    implementation(libs.sdk.sendbird.android.sdk)
+    implementation(libs.google.firebase.messaging)
+    implementation(libs.sendbird.chat)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

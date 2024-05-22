@@ -42,11 +42,6 @@ fun LoginScreen(navController: NavController) {
 
     val context = LocalContext.current
 
-    LaunchedEffect(Unit) {
-        var usuario = Usuario()
-        usuario.login(context = context, navController = navController)
-    }
-
     Column (modifier = Modifier
         .fillMaxWidth()
         .padding(top = 30.dp), horizontalAlignment = Alignment.CenterHorizontally) {

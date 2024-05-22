@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.job_fy.components.InputText
@@ -58,7 +59,8 @@ fun Step2 (usuario: Usuario) {
                          ,valueOnChange = { setor = it; usuario.setor = it } )
 
                 InputText(text = "Anos de ".plus(obsAnos), value = anos
-                         ,valueOnChange = { anos = it; usuario.anos = it.toInt() } )
+                         ,valueOnChange = { anos = it; if ( it.isNotEmpty() ) { usuario.anos = it.toInt() } }
+                         ,keyboardType = KeyboardType.Number )
 
             }
         }

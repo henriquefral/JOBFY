@@ -17,6 +17,8 @@ firebaseMessaging = "20.1.0"
 firebaseAnalytics = "22.0.0"
 desugar_jdk_libs = "2.0.3"
 sendbirdAndroidSdkVersion = "3.1.27"
+firebaseMessagingVersion = "23.0.1"
+sendbirdChat = "4.16.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +44,8 @@ firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
 desugar_jdk_libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 sdk-sendbird-android-sdk = { group = "com.sendbird.sdk", name = "sendbird-android-sdk", version.ref = "sendbirdAndroidSdkVersion" }
+google-firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessagingVersion" }
+sendbird-chat = { group = "com.sendbird.sdk", name = "sendbird-chat", version.ref = "sendbirdChat" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
