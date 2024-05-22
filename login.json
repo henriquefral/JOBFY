@@ -1,0 +1,28 @@
+{
+  "id": "1",
+  "anos": 0,
+  "cargo": "Desempregado",
+  "dataNascimento": "18/05/2004",
+  "descritivo": "sou bom",
+  "email": "123",
+  "errorCadastro": "",
+  "formacao": [
+    {
+      "descricao": "muito bom",
+      "graduacao": "tecnologo",
+      "instituicao": "FIAP"
+    }
+  ],
+  "habilidade": [
+    {
+      "descricao": "sou bom",
+      "nome": "bom"
+    }
+  ],
+  "nome": "itachi",
+  "profissao": "T.I",
+  "senha": "123",
+  "setor": "full=stack",
+  "situacao": 1,
+  "sobrenome": "uchiha"
+}
